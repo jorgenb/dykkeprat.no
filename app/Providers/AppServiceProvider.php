@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $tags = collect(config('dykkeprat_tags.tags'));
+
+        view()->share('search_tag_placeholder', json_decode('"'.$tags->random().'"'));
     }
 
     /**

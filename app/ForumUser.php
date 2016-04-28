@@ -4,19 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Forum extends Model
+class ForumUser extends Model
 {
     /**
-     * @var string
-     */
-    protected $table = 'forum';
+    * @var string
+    */
+    protected $table = 'user';
 
     /**
      * Override Eloquent default primary key.
-     *
+     * 
      * @var string
      */
-    protected $primaryKey = 'forumid';
+    protected $primaryKey = 'userid';
 
     /**
      * The attributes that should be hidden.
@@ -32,16 +32,6 @@ class Forum extends Model
      * @var array
      */
     protected $dates = [
-        'dateline'
+        'joindate'
     ];
-
-    /**
-     * A forum has many threads.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function threads()
-    {
-        return $this->hasMany('App\Thread', 'forumid', 'forumid');
-    }
 }
