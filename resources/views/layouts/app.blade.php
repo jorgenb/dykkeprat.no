@@ -161,7 +161,7 @@
         <small>
             <p class="text-muted">Tjenesten er laget av <a href="{{ url('https://www.facebook.com/jorgen.birkhaug') }}">Jørgen Birkhaug</a>, jorgen.birkhaug@gmail.com.</p>
             <p class="text-muted">Logo laget av <a href="{{ url('https://www.facebook.com/hans.kaland') }}">Hans Fredrik Kaland</a>.</p>
-            <p class="text-muted">Koden er fritt tilgjengelig via <a href="{{ url('https://github.com/jorgenb/') }}">https://github.com/jorgenb/dykkeprat</a>. Bidra gjerne!</p>
+            <p class="text-muted">Koden er fritt tilgjengelig via <a href="{{ url('https://github.com/jorgenb/dykkeprat.no') }}">https://github.com/jorgenb/dykkeprat.no</a>. Bidra gjerne!</p>
             <p class="text-muted">Håndkodet i <a href="{{ url('https://laravel.com/') }}">Laravel</a>. Ikoner fra <a href="{{ url('http://glyphicons.com') }}">http://glyphicons.com/</a>. Realtime søk med <a href="{{ url('https://www.elastic.co/') }}">Elasticsearch</a>.</p>
             <p class="text-muted"><strong>Vennligst merk.</strong> Dette nettstedet bruker '<a href="{{ url('https://no.wikipedia.org/wiki/Informasjonskapsel') }}">cookies</a>' og du må slutte å bruke dette nettstedet dersom du ikke aksepterer det.</p>
         </small>
