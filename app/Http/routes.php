@@ -27,7 +27,7 @@ Route::get('/', function () {
 Route::get('/forum/{id}', function ($id) {
 
     $forum = \App\Forum::where('forumid', $id)->first();
-    $threads = \App\Thread::where('forumid', $id)->where('open', 1)->paginate(10);
+    $threads = \App\Thread::where('forumid', $id)->where('open', 1)->where('visible', 1)->paginate(10);
 
     return view('thread', compact('forum', 'threads'));
 });
@@ -37,7 +37,7 @@ Route::get('/forum/{id}', function ($id) {
  */
 Route::get('/forum/posts/{thread_id}', function ($id) {
 
-    $thread = \App\Thread::whereNotIn('forumid', [3,4,5,6,8])->where('open', 1)->findOrFail($id);
+    $thread = \App\Thread::whereNotIn('forumid', [3,4,5,6,8])->where('visible', 1)->where('open', 1)->findOrFail($id);
     $posts = \App\Post::where('threadid', $id)->where('visible', 1)->orderBy('dateline')->paginate(10);
 
     return view('post', compact('thread', 'posts'));
