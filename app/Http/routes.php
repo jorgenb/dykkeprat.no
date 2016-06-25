@@ -5,6 +5,10 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
 
+Route::get('privacy', function () {
+    return view('privacy');
+});
+
 
 /*
 |--------------------------------------------------------------------------
