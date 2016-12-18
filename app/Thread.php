@@ -29,10 +29,11 @@ class Thread extends Model
 
     /**
      * Attributes that should be mutated to dates.
+     *
      * @var array
      */
     protected $dates = [
-        'dateline'
+        'dateline',
     ];
 
     /**
@@ -46,7 +47,7 @@ class Thread extends Model
     }
 
     /**
-     * A thread has many posts
+     * A thread has many posts.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

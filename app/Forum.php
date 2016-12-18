@@ -29,10 +29,11 @@ class Forum extends Model
 
     /**
      * Attributes that should be mutated to dates.
+     *
      * @var array
      */
     protected $dates = [
-        'dateline'
+        'dateline',
     ];
 
     /**

@@ -4,33 +4,29 @@ use Elasticsearch\ClientBuilder;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
-
 Route::get('privacy', function () {
     return view('privacy');
 });
-
 
 /*
 |--------------------------------------------------------------------------
 | REST
 |--------------------------------------------------------------------------
 */
-/**
+/*
  * Get a list of forums.
  */
 Route::get('/', function () {
-
     $forums = \App\Forum::where('showprivate', 0)->where('threadcount', '>', 1)->orderby('replycount', 'desc')->get();
 
     return view('welcome', compact('forums'));
 });
 
-/**
+/*
  * Get current forum and list of threads.
  */
 Route::get('/forum/{id}', function ($id) {
-
-    $forum = \App\Forum::whereNotIn('forumid', [1,3,4,5,6,7,8])->findOrFail($id);
+    $forum = \App\Forum::whereNotIn('forumid', [1, 3, 4, 5, 6, 7, 8])->findOrFail($id);
     $threads = \App\Thread::where('forumid', $id)->where('open', 1)->where('visible', 1)->orderBy('dateline', 'desc')->paginate(10);
 
     //return $threads;
@@ -38,22 +34,20 @@ Route::get('/forum/{id}', function ($id) {
     return view('thread', compact('forum', 'threads'));
 });
 
-/**
+/*
  * Get current thread and list of posts.
  */
 Route::get('/forum/posts/{thread_id}', function ($id) {
-
-    $thread = \App\Thread::whereNotIn('forumid', [1,3,4,5,6,7,8])->where('visible', 1)->where('open', 1)->findOrFail($id);
+    $thread = \App\Thread::whereNotIn('forumid', [1, 3, 4, 5, 6, 7, 8])->where('visible', 1)->where('open', 1)->findOrFail($id);
     $posts = \App\Post::where('threadid', $id)->where('visible', 1)->orderBy('dateline')->paginate(10);
 
     return view('post', compact('thread', 'posts'));
 });
 
-/**
+/*
  * Get user
  */
 Route::get('/forum/user/{id}', function ($id) {
-
     $user = \App\ForumUser::findOrFail($id);
 
     return view('user', compact('user'));
@@ -64,15 +58,13 @@ Route::get('/forum/user/{id}', function ($id) {
 | SEARCH
 |--------------------------------------------------------------------------
 */
-Route::get('/api/search', function ()  {
-
-
+Route::get('/api/search', function () {
     $server = env('ELASTIC_SERVER');
     $user = env('ELASTIC_RO_USER');
     $secret = env('ELASTIC_RO_PASSWORD');
 
     $hosts = [
-        "https://$user:$secret@$server:443"
+        "https://$user:$secret@$server:443",
     ];
 
     /**
@@ -90,29 +82,28 @@ Route::get('/api/search', function ()  {
 
     $params = [
         'index' => 'dykkeprat',
-        'type' => 'user',
-        'body' => [
+        'type'  => 'user',
+        'body'  => [
             'query' => [
                 'match' => [
-                    'username' => $query
-                ]
+                    'username' => $query,
+                ],
             ],
             'sort' => [
                 [
                     'post_count' => [
-                        'order' => 'desc'
+                        'order' => 'desc',
                     ],
-                ]
-            ]
-        ]
+                ],
+            ],
+        ],
     ];
-
 
     $users = $client->search($params);
 
     $params = [
         'index' => 'dykkeprat',
-        'type' => ['threads'],
+        'type'  => ['threads'],
 
         'body' => [
             // The problem with ordering results by views is
@@ -127,44 +118,44 @@ Route::get('/api/search', function ()  {
                 'bool' => [
                     'should' => [
                         'match_phrase_prefix' => ['title' => [
-                            'query' => $query,
-                            'operator' => 'and'
+                            'query'    => $query,
+                            'operator' => 'and',
                         ]],
                         [
                             'nested' => [
-                                'path' => 'posts',
+                                'path'       => 'posts',
                                 'score_mode' => 'max',
-                                'query' => [
+                                'query'      => [
                                     'bool' => [
                                         'should' => [
                                             'match_phrase_prefix' => ['posts.pagetext' => [
-                                                'query' => $query,
+                                                'query'    => $query,
                                                 'operator' => 'and',
-                                                'boost' => 3
-                                            ]]
-                                        ]
-                                    ]
+                                                'boost'    => 3,
+                                            ]],
+                                        ],
+                                    ],
                                 ],
                                 'inner_hits' => [
-                                    'size' => 1,
+                                    'size'      => 1,
                                     'highlight' => [
-                                        'pre_tags' => ['<mark>'],
+                                        'pre_tags'  => ['<mark>'],
                                         'post_tags' => ['</mark>'],
-                                        'fields' => [
+                                        'fields'    => [
                                             'posts.pagetext' => [
-                                                'fragment_size' => 300,
+                                                'fragment_size'       => 300,
                                                 'number_of_fragments' => 3,
-                                                'no_match_size' => 300
-                                            ]
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ]
+                                                'no_match_size'       => 300,
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
     ];
 
     $threads = $client->search($params);
@@ -176,8 +167,6 @@ Route::get('/api/search', function ()  {
 
     return $results;
 });
-
-
 
 /*
 |--------------------------------------------------------------------------
