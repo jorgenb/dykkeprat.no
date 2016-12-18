@@ -8,13 +8,11 @@ use Decoda\Filter\DefaultFilter;
 use Decoda\Filter\ImageFilter;
 use Decoda\Filter\ListFilter;
 use Decoda\Filter\QuoteFilter;
-use Decoda\Filter\TextFilter;
 use Decoda\Filter\UrlFilter;
 use Decoda\Filter\VideoFilter;
 use Decoda\Hook\ClickableHook;
 use Decoda\Hook\EmoticonHook;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
 
 class Post extends Model
 {
@@ -41,10 +39,11 @@ class Post extends Model
 
     /**
      * Attributes that should be mutated to dates.
+     *
      * @var array
      */
     protected $dates = [
-        'dateline'
+        'dateline',
     ];
 
     /**
@@ -57,11 +56,11 @@ class Post extends Model
         return $this->belongsTo('App\Forum', 'forumid');
     }
 
-
     /**
      * Get the post's text and parse BB-code, mutating it to suit bootstrap.
      *
      * @param $value
+     *
      * @return string
      */
     public function getPageTextAttribute($value)

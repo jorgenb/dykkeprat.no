@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class ForumUser extends Model
 {
     /**
-    * @var string
-    */
+     * @var string
+     */
     protected $table = 'user';
 
     /**
      * Override Eloquent default primary key.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'userid';
@@ -29,9 +29,10 @@ class ForumUser extends Model
 
     /**
      * Attributes that should be mutated to dates.
+     *
      * @var array
      */
     protected $dates = [
-        'joindate'
+        'joindate',
     ];
 }
