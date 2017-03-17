@@ -72,7 +72,8 @@ Route::get('/api/search', function ()  {
     $secret = env('ELASTIC_RO_PASSWORD');
 
     $hosts = [
-        "https://$user:$secret@$server:443"
+        //"https://$user:$secret@$server:443"
+	env('ELASTIC_SERVER')
     ];
 
     /**
@@ -89,6 +90,13 @@ Route::get('/api/search', function ()  {
     $query = \Illuminate\Support\Facades\Input::get('q');
 
     $params = [
+	'client' => [
+  	  'curl' => [
+	    	CURLOPT_HTTPHEADER => [
+			'Authorization: Bearer ' . env('API_KEY', '')
+    			]
+  		]
+	],
         'index' => 'dykkeprat',
         'type' => 'user',
         'body' => [
@@ -111,6 +119,13 @@ Route::get('/api/search', function ()  {
     $users = $client->search($params);
 
     $params = [
+	'client' => [
+  	  'curl' => [
+	    	CURLOPT_HTTPHEADER => [
+			'Authorization: Bearer ' . env('API_KEY', '')
+    			]
+  		]
+	],
         'index' => 'dykkeprat',
         'type' => ['threads'],
 
