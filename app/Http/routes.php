@@ -59,12 +59,12 @@ Route::get('/forum/user/{id}', function ($id) {
 |--------------------------------------------------------------------------
 */
 Route::get('/api/search', function () {
-    $server = env('ELASTIC_SERVER');
-    $user = env('ELASTIC_RO_USER');
-    $secret = env('ELASTIC_RO_PASSWORD');
+    //$server = env('ELASTIC_SERVER');
+    //$user = env('ELASTIC_RO_USER');
+    //$secret = env('ELASTIC_RO_PASSWORD');
 
     $hosts = [
-    env('ELASTIC_SERVER'),
+        env('ELASTIC_SERVER'),
     ];
 
     /**
@@ -81,13 +81,15 @@ Route::get('/api/search', function () {
     $query = \Illuminate\Support\Facades\Input::get('q');
 
     $params = [
-    'client' => [
-      'curl' => [
-            CURLOPT_HTTPHEADER => [
-            'Authorization: Bearer '.env('API_KEY', ''),
+        'client' => [
+            'curl' => [
+                CURLOPT_HTTPHEADER => [
+                    //'Authorization: Bearer '.env('API_KEY', ''),
+                    'x-api-id:' . env('X-API-ID'),
+                    'x-api-key:' . env('X-API-KEY'),
                 ],
+            ],
         ],
-    ],
         'index' => 'dykkeprat',
         'type'  => 'user',
         'body'  => [
@@ -109,13 +111,15 @@ Route::get('/api/search', function () {
     $users = $client->search($params);
 
     $params = [
-    'client' => [
-      'curl' => [
-            CURLOPT_HTTPHEADER => [
-            'Authorization: Bearer '.env('API_KEY', ''),
+        'client' => [
+            'curl' => [
+                CURLOPT_HTTPHEADER => [
+                    //'Authorization: Bearer '.env('API_KEY', ''),
+                    'x-api-id: ' . env('X-API-ID'),
+                    'x-api-key: ' . env('X-API-KEY'),
                 ],
+            ],
         ],
-    ],
         'index' => 'dykkeprat',
         'type'  => ['threads'],
 
