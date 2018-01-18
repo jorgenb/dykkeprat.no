@@ -1,8 +1,8 @@
 <?php
 
+use Monolog\Logger;
 use Elasticsearch\ClientBuilder;
 use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
 
 Route::get('privacy', function () {
     return view('privacy');
@@ -85,8 +85,8 @@ Route::get('/api/search', function () {
             'curl' => [
                 CURLOPT_HTTPHEADER => [
                     //'Authorization: Bearer '.env('API_KEY', ''),
-                    'x-api-id:' . env('X-API-ID'),
-                    'x-api-key:' . env('X-API-KEY'),
+                    'x-api-id:'.env('X-API-ID'),
+                    'x-api-key:'.env('X-API-KEY'),
                 ],
             ],
         ],
@@ -115,8 +115,8 @@ Route::get('/api/search', function () {
             'curl' => [
                 CURLOPT_HTTPHEADER => [
                     //'Authorization: Bearer '.env('API_KEY', ''),
-                    'x-api-id: ' . env('X-API-ID'),
-                    'x-api-key: ' . env('X-API-KEY'),
+                    'x-api-id: '.env('X-API-ID'),
+                    'x-api-key: '.env('X-API-KEY'),
                 ],
             ],
         ],
