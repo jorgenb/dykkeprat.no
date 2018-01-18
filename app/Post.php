@@ -3,15 +3,15 @@
 namespace App;
 
 use Decoda\Decoda;
-use Decoda\Filter\CodeFilter;
-use Decoda\Filter\DefaultFilter;
-use Decoda\Filter\ImageFilter;
-use Decoda\Filter\ListFilter;
-use Decoda\Filter\QuoteFilter;
 use Decoda\Filter\UrlFilter;
+use Decoda\Filter\CodeFilter;
+use Decoda\Filter\ListFilter;
+use Decoda\Hook\EmoticonHook;
+use Decoda\Filter\ImageFilter;
+use Decoda\Filter\QuoteFilter;
 use Decoda\Filter\VideoFilter;
 use Decoda\Hook\ClickableHook;
-use Decoda\Hook\EmoticonHook;
+use Decoda\Filter\DefaultFilter;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
