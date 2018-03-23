@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <ol class="breadcrumb">
         <li><a href="{{ url('/') }}">Forum</a></li>
         <li class="active">{{ $thread->forum->title }}</li>
@@ -18,7 +17,7 @@
                     @if ($key % 2 == 0)
                         <div class="col-md-2 col-sm-2 hidden-xs">
                             <figure class="thumbnail">
-                                <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
+                                <img class="img-responsive" src="{{ $post->user->gravatar() }}" />
                                 <figcaption class="text-center"><a href="{{ url('forum/user', $post->userid) }}">{{ $post->username }}</a></figcaption>
                             </figure>
                         </div>
@@ -57,7 +56,7 @@
                         </div>
                         <div class="col-md-2 col-sm-2 hidden-xs">
                             <figure class="thumbnail">
-                                <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
+                                <img class="img-responsive" src="{{ $post->user->gravatar() }}" />
                                 <figcaption class="text-center"><a href="{{ url('forum/user', $post->userid) }}">{{ $post->username }}</a></figcaption>
                             </figure>
                         </div>

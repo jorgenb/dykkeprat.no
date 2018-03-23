@@ -57,6 +57,16 @@ class Post extends Model
     }
 
     /**
+     * Get the user that owns the post.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'userid');
+    }
+
+    /**
      * Get the post's text and parse BB-code, mutating it to suit bootstrap.
      *
      * @param $value
