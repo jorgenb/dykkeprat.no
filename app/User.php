@@ -35,7 +35,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * A user has many posts
+     * A user has many posts.
      */
     public function posts()
     {
@@ -43,13 +43,14 @@ class User extends Authenticatable
     }
 
     /**
-     * Build up the url to the gravatar
+     * Build up the url to the gravatar.
      */
     public function gravatar($s = 80, $d = 'identicon', $r = 'g')
     {
         $url = 'https://www.gravatar.com/avatar/';
-        $url .= md5( strtolower( trim( $this->email ) ) );
+        $url .= md5(strtolower(trim($this->email)));
         $url .= "?s=$s&d=$d&r=$r";
+
         return $url;
     }
 }
