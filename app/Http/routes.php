@@ -39,7 +39,7 @@ Route::get('/forum/{id}', function ($id) {
  */
 Route::get('/forum/posts/{thread_id}', function ($id) {
     $thread = \App\Thread::whereNotIn('forumid', [1, 3, 4, 5, 6, 7, 8])->where('visible', 1)->where('open', 1)->findOrFail($id);
-    $posts = \App\Post::where('threadid', $id)->where('visible', 1)->orderBy('dateline')->paginate(10);
+    $posts = \App\Post::where('threadid', $id)->where('visible', 1)->where('userid', '>', 0)->orderBy('dateline')->paginate(10);
 
     return view('post', compact('thread', 'posts'));
 });
