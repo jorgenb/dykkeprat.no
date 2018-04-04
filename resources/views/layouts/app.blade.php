@@ -160,7 +160,7 @@
     <div class="container">
         <hr>
         <small>
-            <p class="text-muted">Tjenesten er laget av <a href="{{ url('https://www.facebook.com/jorgen.birkhaug') }}">Jørgen Birkhaug</a>, jorgen.birkhaug@gmail.com.</p>
+            <p class="text-muted">Tjenesten er laget av <a href="{{ url('https://www.facebook.com/jorgen.birkhaug') }}">Jørgen Birkhaug</a></p>
             <p class="text-muted">Logo laget av <a href="{{ url('https://www.facebook.com/hans.kaland') }}">Hans Fredrik Kaland</a>.</p>
             <p class="text-muted">Koden for denne lille appen er tilgjengelig her: <a href="{{ url('https://github.com/jorgenb/dykkeprat.no') }}">https://github.com/jorgenb/dykkeprat.no</a></p>
             <p class="text-muted">Dette nettstedet bruker '<a href="{{ url('https://no.wikipedia.org/wiki/Informasjonskapsel') }}">cookies</a>' og du må slutte å bruke dette nettstedet dersom du ikke aksepterer det.</p>
