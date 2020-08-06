@@ -1,0 +1,56 @@
+.navbar {
+    background-color: $gray-600;
+}
+
+.position-search-lg {
+    top: 0px;
+    left: 15px;
+    right: 0px;
+}
+
+.position-search-xs {
+    top: 0px;
+    left: 15px;
+    right: 0px;
+}
+
+em {
+    background-color: #b81f24;
+    color: whitesmoke;
+}
+
+.bg-dykkeprat {
+    background-color: #b81f24;
+}
+
+.btn-brown {
+    background-color: $gray-600;
+}
+
+#forum tr td:nth-child(1){
+    width:80%;
+}
+
+
+
+mark {
+    background-color: #b81f24;
+    color: whitesmoke;
+}
+
+.rounded-top-left {
+    border-top-left-radius: 1rem;
+}
+.rounded-top-right {
+    border-top-right-radius: $border-radius !important;
+}
+.rounded-bottom-left {
+    border-bottom-left-radius: 1rem;
+}
+.rounded-bottom-right {
+    border-bottom-right-radius: 1rem;
+}
+
+.not-rounded-bottom-right {
+    border-bottom-right-radius: 0rem !important;
+}
